@@ -1,0 +1,6 @@
+name = "ASC Scroll Letter"
+description = "Provides views-independent Simple way to scroll to letter in lists."
+core = "7.x"
+package = "ASC"
+version = "7.x.-1.x"
+files[] = asc_scrollletter.module

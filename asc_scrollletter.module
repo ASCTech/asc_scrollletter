@@ -1,0 +1,61 @@
+<?php
+/**
+ * @file
+ * Module to supply social media icons for ASC Sites.
+ */
+
+/**
+ * @defgroup asc_scrollletter
+ * Module to supple field to add OPIC image.
+ *
+ * And finally, our module defines the widet in
+ * opic_field_widget_info() and field_example_field_widget_form().
+ * The widget is the form element used to receive input from the user
+ * when the field is being populated.
+ *
+ * @see field_types
+ * @see field
+ */
+
+/**
+ * Implements hook_init
+ */
+function asc_scrollletter_init() {
+  drupal_add_js(drupal_get_path('module', 'asc_scrollletter') . '/asc_scrollletter.js');
+}
+
+/*
+ * Implements hook_block_info
+ */
+
+function asc_scrollletter_block_info() {
+  $blocks['asc_scrollletter'] = array(
+    'info'        => 'ASC People Letter Scroll',
+    'weight'      => '12',
+    'region'      => 'content',
+    'status'      => 'true',
+    'cache'       => DRUPAL_CACHE_GLOBAL,
+  );
+  return $blocks;
+}
+
+/*
+ * Implements hook_block_view
+ */
+
+function asc_scrollletter_block_view($delta = '') {
+  switch($delta) {
+  default:
+    $block['subject'] = '';
+    $block['content'] = '';
+
+    $result = db_query('SELECT DISTINCT UPPER(LEFT(n.title,1)) AS letter
+      FROM {node} n WHERE n.type=\'asc_people\' AND n.status=1');
+    foreach ($result as $letter) {
+      $block['content'] .= '<a href="#" class="letter-select">' . $letter->letter . "</a>";
+    }
+    break;
+  }
+
+  return $block;
+}
