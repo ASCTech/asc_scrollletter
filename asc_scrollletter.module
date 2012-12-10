@@ -34,7 +34,7 @@ function asc_scrollletter_block_info() {
     'weight'      => '12',
     'region'      => 'content',
     'status'      => 'true',
-    'cache'       => DRUPAL_CACHE_GLOBAL,
+    'cache'       => DRUPAL_NO_CACHE,
   );
   return $blocks;
 }
