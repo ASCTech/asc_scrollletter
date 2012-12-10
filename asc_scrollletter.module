@@ -47,13 +47,14 @@ function asc_scrollletter_block_view($delta = '') {
   switch($delta) {
   default:
     $block['subject'] = '';
-    $block['content'] = '';
+    $block['content'] = '<ul id="letter-select-list">';
 
     $result = db_query('SELECT DISTINCT UPPER(LEFT(n.title,1)) AS letter
-      FROM {node} n WHERE n.type=\'asc_people\' AND n.status=1');
+      FROM {node} n WHERE n.type=\'asc_people\' AND n.status=1 ORDER BY letter');
     foreach ($result as $letter) {
-      $block['content'] .= '<a href="#" class="letter-select">' . $letter->letter . "</a>";
+      $block['content'] .= '<li><a href="#" class="letter-select">' . $letter->letter . "</a></li>";
     }
+    $block['content'] .= '</ul>';
     break;
   }
 
