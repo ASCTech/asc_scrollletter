@@ -1,6 +1,6 @@
 (function ($) {
   Drupal.behaviors.scollLetter = {
-    attach: function (context) {
+    attach: $(function () {
               $("a.letter-select").click(function(){
                 var letter = $(this).html();
                 $(this).css('color', '#000000')
@@ -13,7 +13,6 @@
                 var top = $('body').top;
                 $("body,html").animate({scrollTop: top}, 400);
               });
-            }
+            })
           };
-
   })(jQuery);
